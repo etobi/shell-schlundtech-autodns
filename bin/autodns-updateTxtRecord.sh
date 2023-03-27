@@ -16,15 +16,6 @@ if [ "$domain" == "" ] || [ "$name" == "" ]; then
   exit 1
 fi
 
-if [ -f .env ]; then
-  set -o allexport
-  source .env
-  set +o allexport
-else
-  echo "no .env file found"
-  exit 1
-fi
-
 if [ "$name" != "" ]; then
   fulldomain="$name.$domain"
 else
