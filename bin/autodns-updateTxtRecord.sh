@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 domain="$1"
 name="$2"
@@ -33,10 +33,11 @@ xmlAuthTag() {
   printf "<auth>
         <user>%s</user>
         <password>%s</password>
-        <context>10</context>
+        <context>%s</context>
     </auth>" \
     "$APIUSERNAME" \
-    "$APIPASSWORD"
+    "$APIPASSWORD" \
+    "$APICONTEXT"
 }
 
 xmlZoneInquire() {
