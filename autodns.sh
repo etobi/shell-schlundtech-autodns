@@ -35,19 +35,20 @@ shift 1
 
 if [ "$command" = "" ] || [ $helpFlag -eq 1 ]; then
   cat << EOF
-          Usage: $0 <[options]> <command> [<commandOptions>]
+          Usage: $0 [<options>] <command> <commandOptions>
           options:
                   -h   --help           Show this message
                   -v   --verbose        verbose output
                   -N   --dryrun         Dry run mode
 
           command:
-                  test
-                  addTxtRecord
-                  removeTxtRecord
+                  addTxtRecord <domain> <subdomain name> <value>
+                  removeTxtRecord <domain> <subdomain name> [<value>]
+                  addDmarc <domain> [<policy>]
+                  getDmarc <domain>
+                  addDkim <domain> <selector> <publickey>
+                  getDmarc <domain> <selector>
 
-          commandOptions:
-                  TODO
 EOF
   exit
 fi

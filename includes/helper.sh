@@ -75,11 +75,10 @@ printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 xmlZoneUpdateRecord() {
   action=$1
   name=$2
-  ttl=$3
-  type=$4
-  value=$5
-  zonename=$6
-  nameserver=$7
+  type=$3
+  value=$4
+  zonename=$5
+  nameserver=$6
 
   printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
     <request>
@@ -89,7 +88,6 @@ xmlZoneUpdateRecord() {
         <default>
           <%s>
             <name>%s</name>
-            <ttl>%s</ttl>
             <type>%s</type>
             <value>%s</value>
           </%s>
@@ -103,7 +101,6 @@ xmlZoneUpdateRecord() {
     "$(xmlAuthTag)" \
     "$action" \
     "$name" \
-    "$ttl" \
     "$type" \
     "$value" \
     "$action" \
@@ -115,7 +112,6 @@ xmlZoneUpdateAddTxtRecord() {
   xmlZoneUpdateRecord \
     "rr_add" \
     "$3" \
-    "$5" \
     "TXT" \
     "$4" \
     "$1" \
@@ -126,7 +122,6 @@ xmlZoneUpdateRemoveTxtRecord() {
   xmlZoneUpdateRecord \
     "rr_rem" \
     "$3" \
-    "$5" \
     "TXT" \
     "$4" \
     "$1" \
@@ -144,6 +139,13 @@ executeCurl() {
          -H Accept:application/xml \
          -H Content-Type:application/xml \
          $APIURL
+  fi
+}
+
+executeDig() {
+  if [ "$dryrunFlag" = "0" ]; then
+    echo dig txt +noall +answer +multiline "${1}" "@${2}"
+    dig txt +noall +answer +multiline "${1}" "@${2}"
   fi
 }
 
