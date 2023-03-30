@@ -34,6 +34,9 @@ echoHint() {
   printf "${BLUE}${content}${ENDCOLOR}\n" 1>&2
 }
 
+echoSuccess() {
+  [ "$dryrunFlag" = "0" ] && echoGood 'success' || echoGood 'success (dryrun)'
+}
 # ------------------------------------------------------------------------------
 
 xmlAuthTag() {
@@ -123,9 +126,9 @@ xmlZoneUpdateRemoveTxtRecord() {
   xmlZoneUpdateRecord \
     "rr_rem" \
     "$3" \
-    "$4" \
+    "$5" \
     "TXT" \
-    "*" \
+    "$4" \
     "$1" \
     "$2"
 }
