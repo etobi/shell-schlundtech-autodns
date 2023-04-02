@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [ -f .env ]; then
   set -o allexport
@@ -47,7 +47,7 @@ if [ "$command" = "" ] || [ $helpFlag -eq 1 ]; then
                   addDmarc <domain> [<policy>]
                   getDmarc <domain>
                   addDkim <domain> <selector> <publickey>
-                  getDmarc <domain> <selector>
+                  getDkim <domain> <selector>
 
 EOF
   exit
