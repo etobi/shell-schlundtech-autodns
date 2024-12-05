@@ -48,6 +48,7 @@ if [ "$command" = "" ] || [ $helpFlag -eq 1 ]; then
                   getDmarc <domain>
                   addDkim <domain> <selector> <publickey>
                   getDkim <domain> <selector>
+                  getResourceRecords <domain>
 
 EOF
   exit

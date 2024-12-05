@@ -128,6 +128,27 @@ xmlZoneUpdateRemoveTxtRecord() {
     "$2"
 }
 
+
+xmlZoneInfo() {
+  name=$1
+  nameserver=$2
+
+printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+  <request>
+    %s
+    <task>
+          <code>0205</code><!-- zone info -->
+          <zone>
+              <name>%s</name>
+              <system_ns>%s</system_ns>
+          </zone>
+    </task>
+  </request>
+  " \
+  "$(xmlAuthTag)" \
+  "$name" \
+  "$nameserver"
+}
 # ------------------------------------------------------------------------------
 
 executeCurl() {
